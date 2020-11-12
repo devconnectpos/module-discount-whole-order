@@ -12,10 +12,11 @@ use Exception;
  */
 abstract class AbstractWholeOrderDiscountRule
 {
-
     const RULE_ID = 99999;
-    private $value;
+    const FIX_DISCOUNT_RULE_NAME = 'X-Retail Fix Amount Discount Whole Order';
+    const PERCENT_DISCOUNT_RULE_NAME = 'X-Retail Percent Discount Whole Order';
 
+    private $value;
 
     /**
      * @param $data

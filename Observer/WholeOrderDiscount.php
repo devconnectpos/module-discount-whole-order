@@ -8,6 +8,7 @@
 namespace SM\DiscountWholeOrder\Observer;
 
 use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Registry;
 use Magento\SalesRule\Model\ResourceModel\Rule\Collection;
@@ -19,28 +20,29 @@ use SM\Sales\Repositories\OrderManagement;
  *
  * @package SM\DiscountWholeOrder\Observer
  */
-class WholeOrderDiscount implements \Magento\Framework\Event\ObserverInterface
+class WholeOrderDiscount implements ObserverInterface
 {
-
     /**
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     protected $registry;
+
     /**
-     * @var \Magento\SalesRule\Model\RuleFactory
+     * @var RuleFactory
      */
     protected $ruleFactory;
+
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
     protected $objectManager;
 
     /**
      * WholeOrderDiscount constructor.
      *
-     * @param \Magento\Framework\Registry               $registry
-     * @param \Magento\SalesRule\Model\RuleFactory      $ruleFactory
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param Registry $registry
+     * @param RuleFactory $ruleFactory
+     * @param ObjectManagerInterface $objectManager
      */
     public function __construct(
         Registry $registry,
@@ -53,11 +55,11 @@ class WholeOrderDiscount implements \Magento\Framework\Event\ObserverInterface
     }
 
     /**
-     * @param \Magento\Framework\Event\Observer $observer
+     * @param Observer $observer
      *
      * @throws \Exception
      */
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute(Observer $observer)
     {
         /** @var \Magento\SalesRule\Model\ResourceModel\Rule\Collection $collection */
         $collection         = $observer->getData('collection');
@@ -80,7 +82,6 @@ class WholeOrderDiscount implements \Magento\Framework\Event\ObserverInterface
                     $rule = $this->getRule()->addData($this->getRuleFixAmountData($discountWholeOrder));
                 }
 
-                //$collection->clear();
                 $collection->addItem($rule);
             }
         }

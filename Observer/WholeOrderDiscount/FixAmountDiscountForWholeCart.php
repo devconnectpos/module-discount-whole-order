@@ -24,7 +24,7 @@ class FixAmountDiscountForWholeCart extends AbstractWholeOrderDiscountRule
         return $this->fixCompatibleMage22(
             [
                 'rule_id'               => self::RULE_ID,
-                'name'                  => 'X-Retail Fix Amount Discount Whole Order',
+                'name'                  => self::FIX_DISCOUNT_RULE_NAME,
                 'description'           => '',
                 'from_date'             => null,
                 'to_date'               => null,
